@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix Effect with Login</title>
+    <style>
+        /* Base styles */
+        body, html {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+            background-color: #000000;
+            color: #00FF00;
+            font-family: 'Courier New', monospace;
+        }
+        /* Matrix canvas styles */
+        #matrixCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        /* Centered message styles */
+        .centered-message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 1000;
+            cursor: pointer;
+        }
+        /* Login box styles */
+        #loginBox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            background: #1A1A1A;
+            padding: 20px;
+            border: 2px solid #00FF00;
+        }
+        /* Input styles */
+        input[type="text"], input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-top: 10px;
+            background: #000000;
+            border: 1px solid #00FF00;
+            color: #00FF00;
+        }
+        /* Button styles */
+        input[type="button"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background: #00FF00;
+            border: 1px solid #00FF00;
+            color: #000000;
+            cursor: pointer;
+        }
+        input[type="button"]:hover {
+            background: #000000;
+            color: #00FF00;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="matrixCanvas"></canvas>
+    <div class="centered-message" onclick="document.getElementById('loginBox').style.display='block'">
+        <h1>WELCOME</h1>
+        <p>Click To Continue!</p>
+    </div>
+    <div id="loginBox">
+        <input type="text" id="userId" placeholder="User ID">
+        <input type="password" id="password" placeholder="Password">
+        <input type="button" value="Login" onclick="checkLogin()">
+    </div>
+    <script>
+        const canvas = document.getElementById('matrixCanvas');
+        const context = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const matrixCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ123456789@#$%^&*()*&^%+-/~{[|`]';
+        const charactersArray = matrixCharacters.split('');
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = [];
+
+        for (let x = 0; x < columns; x++) {
+            drops[x] = 1;
+        }
+
+        function drawMatrix() {
+            context.fillStyle = 'rgba(0, 0, 0, 0.05)';
+            context.fillRect(0, 0, canvas.width, canvas.height);
+
+            context.fillStyle = '#00FF00'; // Matrix green
+            context.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = charactersArray[Math.floor(Math.random() * charactersArray.length)];
+                context.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(drawMatrix, 30);
+
+        function checkLogin() {
+        const userId = document.getElementById('userId').value;
+        const password = document.getElementById('password').value;
+
+        if (userId === "VITCC@04" && password === "1234") {
+            // Redirect to home.html after successful login
+            window.location.href = 'home.html';
+        } else {
+            alert('Invalid details');
+        }
+    }
+    </script>
+</body>
+</html>
