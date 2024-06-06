@@ -326,23 +326,7 @@
         lastScrollTop = scrollTop;
     });
 
-    // Fade in cards when they enter the viewport
-    const cards = document.querySelectorAll('.card');
-
-    function checkFade() {
-        cards.forEach(card => {
-            const rect = card.getBoundingClientRect();
-            if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-                card.classList.add('fade-in');
-            } else {
-                card.classList.remove('fade-in');
-            }
-        });
-    }
-
-    window.addEventListener('scroll', checkFade);
-    window.addEventListener('resize', checkFade);
-    checkFade(); // Initial check when the page loads
+   
 </script>
 
 </body>
