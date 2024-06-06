@@ -257,32 +257,33 @@
 </section>
 <section class="section">
     <div class="card">
-        <img src="aaradhya.jpg" alt="Team Member 1">
+        <img src="Person.jpeg" alt="Team Member 1">
         
         <p>Aaradhya Sharma</p>
         <p><a href="https://www.linkedin.com/in/aaradhya-sharma-ba153527a">LinkedIn</a></p>
     </div>
   
     <div class="card">
-        <img src="aditya1.jpg" alt="Team Member 2">
+        <img src="aditya.jpeg" alt="Team Member 2">
         
         <p>Aditya Thakur</p>
         <p><a href="https://www.linkedin.com/in/aditya-thakur-007627249">LinkedIn</a></p>
     </div>
     <div class="card">
-        <img src="arpit.jpg" alt="Team Member 3">
+        <img src="Person.jpeg" alt="Team Member 3">
         
         <p>Arpit Rajvanshi</p>
         <p><a href="https://www.linkedin.com/in/arpit-rajvanshi-58a52028a">LinkedIn</a></p>
     </div>
     <div class="card">
-        <img src="samyak1.jpg" alt="Team Member 4">
+        <img src="Person.jpeg" alt="Team Member 4">
         
         <p>Samyak Jain</p>
         <p><a href="https://www.linkedin.com/in/samyak-jain-23a14b288">LinkedIn</a></p>
     </div>
 </section>
 
+    
 <!-- Script for Flashcard rotation -->
 <script>
     const flashcards = document.querySelectorAll('.flashcard');
@@ -326,7 +327,23 @@
         lastScrollTop = scrollTop;
     });
 
-   
+   // Fade in cards when they enter the viewport
+    const cards = document.querySelectorAll('.card');
+
+    function checkFade() {
+        cards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+                card.classList.add('fade-in');
+            } else {
+                card.classList.remove('fade-in');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', checkFade);
+    window.addEventListener('resize', checkFade);
+    checkFade(); // Initial check when the page loads
 </script>
 
 </body>
