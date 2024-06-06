@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HackerHunt</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #202124; /* Matte black background */
+            color: #FFFFFF; /* White text */
+            font-size: 1.2em; /* Increase text size slightly */
+        }
+
+        /* Style for header */
+        header {
+            background-color: #2D3133; /* Darker header */
+            padding: 20px;
+            display: flex;
+            justify-content: space-between; /* Align logo and nav */
+            align-items: center;
+            transition: all 0.3s ease; /* Smooth transition for size change */
+            height: 120px; /* Increased height */
+        }
+
+        /* Style for logo */
+        .logo img {
+            width: 3cm; /* Increased logo size */
+            height: 3cm;
+            border-radius: 5%;
+        }
+
+        /* Style for navigation */
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #FFD700; /* Yellow button color */
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            color: #FFFF00; /* Brighter yellow hover color */
+        }
+
+        /* Style for dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #363636;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            right: 0;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #575757;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-button {
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        /* Responsive Navigation Bar */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .dropdown {
+                display: inline-block;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+        }
+
+        /* Style for sections */
+        .section {
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-direction: row; /* Changed to row */
+        }
+
+        /* Style for section content */
+        .section-content {
+            width: 95%; /* Adjusted section width */
+            padding-right: 5%;
+            text-align: justify;
+        }
+
+  
+
+
+        /* Style for cards */
+        .card {
+            background-color: #363636; /* Matte black card background */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(237, 233, 233, 0.929);
+            padding: 20px;
+            margin-bottom: 20px;
+            width: 5cm;
+            text-align: center;
+            margin-right: 20px;
+            opacity: 0; /* Initially set opacity to 0 */
+            transition: opacity 0.5s ease; /* Smooth transition for opacity */
+        }
+
+        .card h3 {
+            color: aqua; /* Aqua event name */
+        }
+
+        .card.fade-in {
+            opacity: 1; /* Set opacity to 1 when entering the viewport */
+        }
+
+        .flashcard-container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .flashcard {
+            background-color: #363636; /* Matte black card background */
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+            width: 90%;
+            height: 70%;
+            text-align: center;
+            display: none;
+        }
+
+        /* Centering the heading in the last section */
+        .last-section-heading, .welcome-text h2 {
+            color: #FFD700; /* Yellow heading */
+        }
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header>
+    <div class="logo">
+        <img src="logo.png" alt="Logo">
+    </div>
+    <nav>
+        <ul id="navbar">
+            <li><a href="C:\Users\Aditya Thakur\Desktop\CODENEXUS\Frontend File\Index\index.html">Home</a></li>
+            <li><a href="C:\Users\Aditya Thakur\Desktop\CODENEXUS\Frontend File\Learning\learning.html">Learning</a></li>
+            <li><a href="C:\Users\Aditya Thakur\Desktop\CODENEXUS\Frontend File\Forum\forum.html">Forum</a></li>
+            <li><a href="C:\Users\Aditya Thakur\Desktop\CODENEXUS\Frontend File\Leaderboard\Leaderboard1.html">Leaderboard</a></li>
+        </ul>
+        <div class="dropdown">
+            <span class="dropdown-button">&#9776;</span>
+            <div class="dropdown-content">
+                <a href="#profile">My Profile</a>
+                <a href="#community">My Community</a>
+                <a href="#support">Support</a>
+                <a href="#logout">Logout</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<!-- Flashcards for Upcoming Events -->
+<div class="flashcard-container">
+    <div class="flashcard" id="event1">
+        <h3 style="color: aqua;">Event 1</h3> <!-- Aqua event name -->
+        <p>Date: January 1, 2025</p>
+        <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+    <div class="flashcard" id="event2">
+        <h3 style="color: aqua;">Event 2    </h3> <!-- Aqua event name -->
+        <p>Date: February 15, 2025</p>
+        <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+    </div>
+    <div class="flashcard" id="event3">
+        <h3 style="color: aqua;">Event 3</h3> <!-- Aqua event name -->
+        <p>Date: March 30, 2025</p>
+        <p>Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, laudantium.<br>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat, ex?<br>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita, enim?</p>
+    </div>
+    <div class="flashcard" id="event4">
+        <h3 style="color: aqua;">Event 4</h3> <!-- Aqua event name -->
+        <p>Date: April 10, 2025</p>
+        <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+    <div class="flashcard" id="event5">
+        <h3 style="color: aqua;">Event 5</h3> <!-- Aqua event name -->
+        <p>Date: May 20, 2025</p>
+        <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+    </div>
+</div>
+
+<!-- Section 1: Welcome message and image -->
+<section class="section">
+    <div class="section-content">
+        <div class="welcome-text">
+            <h2>Welcome to HackerHunt</h2> <!-- Yellow heading -->
+            <p>HackerHunt strives to create an inclusive hub for students, providing a robust platform for competitive programming challenges. With a focus on fostering collaboration and learning, CodeNexus offers a dynamic leaderboard and vibrant community engagement. Participants can immerse themselves in a supportive environment, where they not only compete but also learn from peers and mentors. By offering a comprehensive range of challenges and opportunities for interaction, CodeNexus aims to empower students to enhance their programming skills and network with like-minded individuals. Join us on HackerHunt to embark on a journey of growth, exploration, and camaraderie within the exciting world of competitive programming.</p>
+        </div>
+    </div>
+    
+</section>
+
+<!-- Section 3: Our Team -->
+<section class="section">
+    <h2 class="last-section-heading">Our Team</h2> <!-- Yellow heading -->
+</section>
+<section class="section">
+    <div class="card">
+        <img src="Person.jpeg" alt="Team Member 1">
+        
+        <p>Aaradhya Sharma</p>
+        <p><a href="https://www.linkedin.com/in/aaradhya-sharma-ba153527a">LinkedIn</a></p>
+    </div>
+  
+    <div class="card">
+        <img src="Person.jpeg" alt="Team Member 2">
+        
+        <p>Aditya Thakur</p>
+        <p><a href="https://www.linkedin.com/in/aditya-thakur-007627249">LinkedIn</a></p>
+    </div>
+    <div class="card">
+        <img src="Person.jpeg" alt="Team Member 3">
+        
+        <p>Arpit Rajvanshi</p>
+        <p><a href="https://www.linkedin.com/in/arpit-rajvanshi-58a52028a">LinkedIn</a></p>
+    </div>
+    <div class="card">
+        <img src="Person.jpeg" alt="Team Member 4">
+        
+        <p>Samyak Jain</p>
+        <p><a href="https://www.linkedin.com/in/samyak-jain-23a14b288">LinkedIn</a></p>
+    </div>
+</section>
+
+<!-- Script for Flashcard rotation -->
+<script>
+    const flashcards = document.querySelectorAll('.flashcard');
+    let currentCardIndex = 0;
+
+    setInterval(() => {
+        flashcards[currentCardIndex].style.display = 'none';
+        currentCardIndex = (currentCardIndex + 1) % flashcards.length;
+        flashcards[currentCardIndex].style.display = 'block';
+    }, 4000); /* Adjust flashcard display time to 4 seconds */
+
+    // Responsive Navbar
+    const dropdownButton = document.querySelector('.dropdown-button');
+    const navbar = document.getElementById('navbar');
+
+    dropdownButton.addEventListener('click', () => {
+        navbar.classList.toggle('show');
+    });
+
+    // Shrink and expand header on scroll
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', () => {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop) {
+            // Downscroll code
+            document.querySelector('header').style.height = '50px'; // Shrink header
+            document.querySelector('.logo img').style.width = '2cm'; // Shrink logo
+            document.querySelector('.logo img').style.height = '2cm'; // Shrink logo
+            document.querySelectorAll('nav ul li').forEach(item => {
+                item.style.marginRight = '10px'; // Shrink navigation items
+            });
+        } else {
+            // Upscroll code
+            document.querySelector('header').style.height = '120px'; // Expand header
+            document.querySelector('.logo img').style.width = '3cm'; // Expand logo
+            document.querySelector('.logo img').style.height = '3cm'; // Expand logo
+            document.querySelectorAll('nav ul li').forEach(item => {
+                item.style.marginRight = '20px'; // Expand navigation items
+            });
+        }
+        lastScrollTop = scrollTop;
+    });
+
+    // Fade in cards when they enter the viewport
+    const cards = document.querySelectorAll('.card');
+
+    function checkFade() {
+        cards.forEach(card => {
+            const rect = card.getBoundingClientRect();
+            if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+                card.classList.add('fade-in');
+            } else {
+                card.classList.remove('fade-in');
+            }
+        });
+    }
+
+    window.addEventListener('scroll', checkFade);
+    window.addEventListener('resize', checkFade);
+    checkFade(); // Initial check when the page loads
+</script>
+
+</body>
+</html>
+
+
+       
