@@ -8,12 +8,11 @@
         /* General styles */
         body {
             font-family: Arial, sans-serif;
-            margin-top: 5%;
+            margin: 0;
             padding: 0;
             background-color: #202124; /* Matte black background */
             color: #FFFFFF; /* White text */
             font-size: 1.2em; /* Increase text size slightly */
-            text-align: center;
         }
 
         /* Style for header */
@@ -127,7 +126,12 @@
             justify-content: space-between;
             flex-direction: row; /* Changed to row */
         }
-  </style>
+
+        .section h2 {
+            margin: 0;
+        }
+
+        
 </head>
 <body>
 <header>
@@ -152,11 +156,11 @@
         </div>
     </nav>
 </header>
-  <p>For any technical support fell free to contact us. <br>Working hours 9:00 am - 5:00 pm</p>
-  <p>Email: <a href="mailto:hacker.hunt.05@gmail.com">hacker.hunt.05@gmail.com</a></p>
-  <p>Phone Number: +91 9890XXXXXX</p>
+
+<p>For any technical support fell free to contact us. <br>Working hours 9:00 am - 5:00 pm</p> <p>Email: <a href="mailto:hacker.hunt.05@gmail.com">hacker.hunt.05@gmail.com</a></p> <p>Phone Number: +91 9890XXXXXX</p>
+
 <script>
- // Responsive Navbar
+    // Responsive Navbar
     const dropdownButton = document.querySelector('.dropdown-button');
     const navbar = document.getElementById('navbar');
 
@@ -188,6 +192,5 @@
         lastScrollTop = scrollTop;
     });
 </script>
-
 </body>
 </html>
