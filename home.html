@@ -134,9 +134,6 @@
             text-align: justify;
         }
 
-  
-
-
         /* Style for cards */
         .card {
             background-color: #363636; /* Matte black card background */
@@ -147,41 +144,26 @@
             width: 5cm;
             text-align: center;
             margin-right: 20px;
-            opacity: 0; /* Initially set opacity to 0 */
-            transition: opacity 0.5s ease; /* Smooth transition for opacity */
         }
 
         .card h3 {
             color: aqua; /* Aqua event name */
         }
-
-        .card.fade-in {
-            opacity: 1; /* Set opacity to 1 when entering the viewport */
-        }
-
-        .flashcard-container {
-            width: 100%;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .flashcard {
-            background-color: #363636; /* Matte black card background */
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-            width: 90%;
-            height: 70%;
-            text-align: center;
-            display: none;
-        }
-
+        
         /* Centering the heading in the last section */
         .last-section-heading, .welcome-text h2 {
             color: #FFD700; /* Yellow heading */
+        }
+
+        /* Responsive card layout */
+        @media (max-width: 768px) {
+            .section-content {
+                width: 100%; /* Adjusted section width for responsiveness */
+            }
+
+            .card {
+                width: 100%; /* Adjusted card width for responsiveness */
+            }
         }
     </style>
 </head>
@@ -211,35 +193,6 @@
     </nav>
 </header>
 
-<!-- Flashcards for Upcoming Events -->
-<div class="flashcard-container">
-    <div class="flashcard" id="event1">
-        <h3 style="color: aqua;">Event 1</h3> <!-- Aqua event name -->
-        <p>Date: January 1, 2025</p>
-        <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    </div>
-    <div class="flashcard" id="event2">
-        <h3 style="color: aqua;">Event 2    </h3> <!-- Aqua event name -->
-        <p>Date: February 15, 2025</p>
-        <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
-    </div>
-    <div class="flashcard" id="event3">
-        <h3 style="color: aqua;">Event 3</h3> <!-- Aqua event name -->
-        <p>Date: March 30, 2025</p>
-        <p>Description: Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, laudantium.<br>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Placeat, ex?<br>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Expedita, enim?</p>
-    </div>
-    <div class="flashcard" id="event4">
-        <h3 style="color: aqua;">Event 4</h3> <!-- Aqua event name -->
-        <p>Date: April 10, 2025</p>
-        <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    </div>
-    <div class="flashcard" id="event5">
-        <h3 style="color: aqua;">Event 5</h3> <!-- Aqua event name -->
-        <p>Date: May 20, 2025</p>
-        <p>Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-    </div>
-</div>
-
 <!-- Section 1: Welcome message and image -->
 <section class="section">
     <div class="section-content">
@@ -248,7 +201,6 @@
             <p>HackerHunt strives to create an inclusive hub for students, providing a robust platform for competitive programming challenges. With a focus on fostering collaboration and learning, CodeNexus offers a dynamic leaderboard and vibrant community engagement. Participants can immerse themselves in a supportive environment, where they not only compete but also learn from peers and mentors. By offering a comprehensive range of challenges and opportunities for interaction, CodeNexus aims to empower students to enhance their programming skills and network with like-minded individuals. Join us on HackerHunt to embark on a journey of growth, exploration, and camaraderie within the exciting world of competitive programming.</p>
         </div>
     </div>
-    
 </section>
 
 <!-- Section 3: Our Team -->
@@ -267,23 +219,22 @@
         <img src="Person.jpeg" alt="Team Member 2">
         
         <p>Aditya Thakur</p>
-        <p><a href="https://www.linkedin.com/in/aditya-thakur-007627249">LinkedIn</a></p>
-    </div>
-    <div class="card">
-        <img src="Person.jpeg" alt="Team Member 3">
-        
-        <p>Arpit Rajvanshi</p>
-        <p><a href="https://www.linkedin.com/in/arpit-rajvanshi-58a52028a">LinkedIn</a></p>
-    </div>
-    <div class="card">
-        <img src="Person.jpeg" alt="Team Member 4">
-        
-        <p>Samyak Jain</p>
-        <p><a href="https://www.linkedin.com/in/samyak-jain-23a14b288">LinkedIn</a></p>
-    </div>
+<p><a href="https://www.linkedin.com/in/aditya-thakur-007627249">LinkedIn</a></p>
+</div>
+<div class="card">
+    <img src="Person.jpeg" alt="Team Member 3">
+    
+    <p>Arpit Rajvanshi</p>
+    <p><a href="https://www.linkedin.com/in/arpit-rajvanshi-58a52028a">LinkedIn</a></p>
+</div>
+<div class="card">
+    <img src="Person.jpeg" alt="Team Member 4">
+    
+    <p>Samyak Jain</p>
+    <p><a href="https://www.linkedin.com/in/samyak-jain-23a14b288">LinkedIn</a></p>
+</div>
 </section>
 
-    
 <!-- Script for Flashcard rotation -->
 <script>
     const flashcards = document.querySelectorAll('.flashcard');
@@ -326,12 +277,8 @@
         }
         lastScrollTop = scrollTop;
     });
-
-    
 </script>
 
 </body>
 </html>
 
-
-       
