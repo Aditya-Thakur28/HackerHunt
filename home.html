@@ -60,6 +60,9 @@
             color: #FFFF00; /* Brighter yellow hover color */
         }
 
+        
+
+
         /* Style for dropdown */
         .dropdown {
             position: relative;
@@ -144,7 +147,21 @@
             width: 5cm;
             text-align: center;
             margin-right: 20px;
+            
         }
+        .card img {
+            width: 3.5cm;
+            height: 4.5cm;
+        }
+        .card a{
+            color: #FFD700; /* Yellow button color */
+            text-decoration: none;
+            display: block;
+        }
+        .card a:hover{
+            color: #FFFF00;
+        }
+        
 
         .card h3 {
             color: aqua; /* Aqua event name */
@@ -260,29 +277,29 @@
 </section>
 <section class="section">
     <div class="card">
-        <img src="Person.jpeg" alt="Team Member 1">
+        <img src="aaradhya.jpg" alt="Team Member 1">
         
         <p>Aaradhya Sharma</p>
-        <p><a href="https://www.linkedin.com/in/aaradhya-sharma-ba153527a">LinkedIn</a></p>
+        <p><a href="https://www.linkedin.com/in/aaradhya-sharma-ba153527a" target="_blank">LinkedIn</a></p>
     </div>
   
     <div class="card">
-        <img src="Person.jpeg" alt="Team Member 2">
+        <img src="aditya.jpg" alt="Team Member 2">
         
         <p>Aditya Thakur</p>
-<p><a href="https://www.linkedin.com/in/aditya-thakur-007627249">LinkedIn</a></p>
+<p><a href="https://www.linkedin.com/in/aditya-thakur-007627249" target="_blank">LinkedIn</a></p>
 </div>
 <div class="card">
-    <img src="Person.jpeg" alt="Team Member 3">
+    <img src="arpit.jpg" alt="Team Member 3">
     
     <p>Arpit Rajvanshi</p>
-    <p><a href="https://www.linkedin.com/in/arpit-rajvanshi-58a52028a">LinkedIn</a></p>
+    <p><a href="https://www.linkedin.com/in/arpit-rajvanshi-58a52028a" target="_blank">LinkedIn</a></p>
 </div>
 <div class="card">
-    <img src="Person.jpeg" alt="Team Member 4">
+    <img src="samyak.jpg" alt="Team Member 4">
     
     <p>Samyak Jain</p>
-    <p><a href="https://www.linkedin.com/in/samyak-jain-23a14b288">LinkedIn</a></p>
+    <p><a href="https://www.linkedin.com/in/samyak-jain-23a14b288" target="_blank">LinkedIn</a></p>
 </div>
 </section>
 
@@ -290,6 +307,12 @@
 <script>
     const flashcards = document.querySelectorAll('.flashcard');
     let currentCardIndex = 0;
+
+    flashcards.forEach(card => {
+        card.style.display = 'none';
+    });
+
+    flashcards[currentCardIndex].style.display = 'block';
 
     setInterval(() => {
         flashcards[currentCardIndex].style.display = 'none';
@@ -332,4 +355,3 @@
 
 </body>
 </html>
-
