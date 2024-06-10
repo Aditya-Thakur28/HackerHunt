@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HackerHunt</title>
+    <style>
+        /* General styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #202124; /* Matte black background */
+            color: #FFFFFF; /* White text */
+            font-size: 1.2em; /* Increase text size slightly */
+        }
+
+        /* Style for header */
+        header {
+            background-color: #2D3133; /* Darker header */
+            padding: 20px;
+            display: flex;
+            justify-content: space-between; /* Align logo and nav */
+            align-items: center;
+            transition: all 0.3s ease; /* Smooth transition for size change */
+            height: 120px; /* Increased height */
+        }
+
+        /* Style for logo */
+        .logo img {
+            width: 3cm; /* Increased logo size */
+            height: 3cm;
+            border-radius: 5%;
+        }
+
+        /* Style for navigation */
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            color: #FFD700; /* Yellow button color */
+            text-decoration: none;
+        }
+
+        nav ul li a:hover {
+            color: #FFFF00; /* Brighter yellow hover color */
+        }
+
+        /* Style for dropdown */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #363636;
+            min-width: 160px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            right: 0;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #575757;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        .dropdown-button {
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        /* Responsive Navigation Bar */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                width: 100%;
+            }
+
+            nav ul li {
+                margin: 10px 0;
+            }
+
+            .dropdown {
+                display: inline-block;
+            }
+
+            nav ul.show {
+                display: flex;
+            }
+        }
+
+        /* Style for main content */
+        main {
+            padding: 20px;
+            background-color: #282C34;
+        }
+
+        .forum {
+            max-width: 90%;
+            margin: auto;
+        }
+
+        .card {
+            background-color: #3C4043;
+            padding: 30px; /* Increased padding */
+            border-radius: 10px;
+            margin-bottom: 30px; /* Increased margin */
+            width: 85%;
+
+           
+        }
+
+        .question h3 {
+            margin: 0 0 15px 0; /* Increased margin */
+        }
+
+        .points {
+            color: #FFD700; /* Yellow color for points */
+            margin-top: 10px; /* Increased margin */
+        }
+
+        button {
+            background-color: #FFD700; /* Yellow button color */
+            border: none;
+            padding: 10px 20px;
+            margin: 10px 0;
+            cursor: pointer;
+            color: #202124; /* Button text color */
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #FFFF00; /* Brighter yellow hover color */
+        }
+
+        textarea {
+            width: 100%;
+            max-width: 100%;
+            height: 50px;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #575757;
+            background-color: #202124;
+            color: #FFFFFF;
+            resize: none; /* Prevent resizing */
+        }
+
+        .discussion {
+            background-color: #444;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .discussion p {
+            margin: 5px 0;
+        }
+
+        .chat-message {
+            background-color: #555;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+        }
+
+        /* Popup message style */
+        .popup-message {
+            display: none;
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            z-index: 1000;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <img src="logo.png" alt="Logo">
+    </div>
+    <nav>
+        <ul id="navbar">
+            <li><a href="home.html">Home</a></li>
+            <li><a href="learning.html">Learning</a></li>
+            <li><a href="forum.html">Forum</a></li>
+            <li><a href="leaderboard.html">Leaderboard</a></li>
+        </ul>
+        <div class="dropdown">
+            <span class="dropdown-button">&#9776;</span>
+            <div class="dropdown-content">
+                <a href="profile.html">My Profile</a>
+                <a href="community.html">My Community</a>
+                <a href="support.html">Support</a>
+                <a href="index.html">Logout</a>
+            </div>
+        </div>
+    </nav>
+</header>
+
+<main>
+    <section class="forum">
+        <h2>Forum</h2>
+
+        <!-- Question Card Template Start -->
+        <div class="card">
+            <div class="question">
+                <h3>Question 1: What is the capital of France?</h3>
+                <p class="points">Points: 10</p>
+                <button class="attempt-btn" onclick="toggleVisibility('attempt1')">Attempt</button>
+                <button class="solution-btn" onclick="toggleVisibility('solution1')">View Solution</button>
+            </div>
+            <div class="attempt" id="attempt1" style="display: none;">
+                <h4>Your Attempt</h4>
+                <textarea placeholder="Type your answer here..."></textarea>
+                <button class="submit-btn" onclick="submitAnswer('attempt1')">Submit</button>
+            </div>
+            <div class="solution" id="solution1" style="display: none;">
+                <h4>Solution</h4>
+                <p>The capital of France is Paris.</p>
+                <h4>Discussions</h4>
+                <div class="discussion">
+                    <div class="chat-message"><strong>User1:</strong> I thought it was Berlin at first!</div>
+                    <div class="chat-message"><strong>User2:</strong> Paris is indeed the capital, it's a common question.</div>
+                </div>
+                <textarea placeholder="Join the discussion..."></textarea>
+                <button class="submit-btn" onclick="submitAnswer('solution1')">Post</button>
+            </div>
+        </div>
+        <!-- Question Card Template End -->
+
+        <!-- Repeat the card structure for more questions -->
+        <div class="card">
+            <div class="question">
+                <h3>Question 2: What is the largest planet in our solar system?</h3>
+                <p class="points">Points: 15</p>
+                <button class="attempt-btn" onclick="toggleVisibility('attempt2')">Attempt</button>
+                <button class="solution-btn" onclick="toggleVisibility('solution2')">View Solution</button>
+            </div>
+            <div class="attempt" id="attempt2" style="display: none;">
+                <h4>Your Attempt</h4>
+                <textarea placeholder="Type your answer here..."></textarea>
+                <button class="submit-btn" onclick="submitAnswer('attempt2')">Submit</button>
+            </div>
+            <div class="solution" id="solution2" style="display: none;">
+                <h4>Solution</h4>
+                <p>The largest planet in our solar system is Jupiter.</p>
+                <h4>Discussions</h4>
+                <div class="discussion">
+                    <div class="chat-message"><strong>User3:</strong> Jupiter is so big!</div>
+                    <div class="chat-message"><strong>User4:</strong> I knew it was either Jupiter or Saturn.</div>
+                </div>
+                <textarea placeholder="Join the discussion..."></textarea>
+                <button class="submit-btn" onclick="submitAnswer('solution2')">Post</button>
+            </div>
+        </div>
+        
+        <!-- Repeat for questions 3 to 10 -->
+        <div class="card">
+            <div class="question">
+                <h3>Question 3: Who wrote 'To Kill a Mockingbird'?</h3>
+                <p class="points">Points: 10</p>
+                <button class="attempt-btn" onclick="toggleVisibility('attempt3')">Attempt</button>
+                <button class="solution-btn" onclick="toggleVisibility('solution3')">View Solution</button>
+            </div>
+            <div class="attempt" id="attempt3" style="display: none;">
+                <h4>Your Attempt</h4>
+                <textarea placeholder="Type your answer here..."></textarea>
+                <button class="submit-btn" onclick="submitAnswer('attempt3')">Submit</button>
+            </div>
+            <div class="solution" id="solution3" style="display: none;">
+                <h4>Solution</h4>
+                <p>'To Kill a Mockingbird' was written by Harper Lee.</p>
+                <h4>Discussions</h4>
+                <div class="discussion">
+                    <div class="chat-message"><strong>User5:</strong> Such a great book!</div>
+                    <div class="chat-message"><strong>User6:</strong> A true classic.</div>
+                </div>
+                <textarea placeholder="Join the discussion..."></textarea>
+                <button class="submit-btn" onclick="submitAnswer('solution3')">Post</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="question">
+                <h3>Question 4: What is the chemical symbol for water?</h3>
+                <p class="points">Points: 5</p>
+                <button class="attempt-btn" onclick="toggleVisibility('attempt4')">Attempt</button>
+                <button class="solution-btn" onclick="toggleVisibility('solution4')">View Solution</button>
+            </div>
+            <div class="attempt" id="attempt4" style="display: none;">
+                <h4>Your Attempt</h4>
+                <textarea placeholder="Type your answer here..."></textarea>
+                <button class="submit-btn" onclick="submitAnswer('attempt4')">Submit</button>
+            </div>
+            <div class="solution" id="solution4" style="display: none;">
+                <h4>Solution</h4>
+                <p>The chemical symbol for water is H<sub>2</sub>O.</p>
+                <h4>Discussions</h4>
+                <div class="discussion">
+                    <div class="chat-message"><strong>User7:</strong> Simple but essential.</div>
+                    <div class="chat-message"><strong>User8:</strong> Learned this in school!</div>
+                </div>
+                <textarea placeholder="Join the discussion..."></textarea>
+                <button class="submit-btn" onclick="submitAnswer('solution4')">Post</button>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="question">
+                <h3>Question 5: What is the tallest mountain in the world?</h3>
+                <p class="points">Points: 20</p>
+                <button class="attempt-btn" onclick="toggleVisibility('attempt5')">Attempt</button>
+                <button class="solution-btn" onclick="toggleVisibility('solution5')">View Solution</button>
+            </div>
+            <div class="attempt" id="attempt5" style="display: none;">
+                <h4>Your Attempt</h4>
+                <textarea placeholder="Type your answer here..."></textarea>
+                <button class="submit-btn" onclick="submitAnswer('attempt5')">Submit</button>
+            </div>
+            <div class="solution" id="solution5" style="display: none;">
+                <h4>Solution</h4>
+                <p>The tallest mountain in the world is Mount Everest.</p>
+                <h4>Discussions</h4>
+                <div class="discussion">
+                    <div class="chat-message"><strong>User9:</strong> Always wanted to climb it!</div>
+                    <div class="chat-message"><strong>User10:</strong> It's the ultimate challenge.</div>
+                </div>
+                <textarea placeholder="Join the discussion..."></textarea>
+                <button class="submit-btn" onclick="submitAnswer('solution5')">Post</button>
+            </div>
+        </div>
+    </section>
+</main>
+
+<div class="popup-message" id="popupMessage">Submitted successfully</div>
+
+<script>
+    function toggleVisibility(id) {
+        const element = document.getElementById(id);
+        if (element.style.display === 'none') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+
+    // Responsive Navbar
+    const dropdownButton = document.querySelector('.dropdown-button');
+    const navbar = document.getElementById('navbar');
+
+    dropdownButton.addEventListener('click', () => {
+        navbar.classList.toggle('show');
+    });
+
+    // Shrink and expand header on scroll
+    let lastScrollTop = 0;
+    window.addEventListener('scroll', () => {
+        let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        if (scrollTop > lastScrollTop) {
+            // Downscroll code
+            document.querySelector('header').style.height = '50px'; // Shrink header
+            document.querySelector('.logo img').style.width = '2cm'; // Shrink logo
+            document.querySelector('.logo img').style.height = '2cm'; // Shrink logo
+            document.querySelectorAll('nav ul li').forEach(item => {
+                item.style.marginRight = '10px'; // Shrink navigation items
+            });
+        } else {
+            // Upscroll code
+            document.querySelector('header').style.height = '120px'; // Expand header
+            document.querySelector('.logo img').style.width = '3cm'; // Expand logo
+            document.querySelector('.logo img').style.height = '3cm'; // Expand logo
+            document.querySelectorAll('nav ul li').forEach(item => {
+                item.style.marginRight = '20px'; // Expand navigation items
+            });
+        }
+        lastScrollTop = scrollTop;
+    });
+
+    // Show popup message function
+    function showPopupMessage() {
+        const popup = document.getElementById('popupMessage');
+        popup.style.display = 'block';
+        setTimeout(() => {
+            popup.style.display = 'none';
+        }, 3000);
+    }
+
+    function submitAnswer(attemptId) {
+        // Hide the attempt area
+        toggleVisibility(attemptId);
+        // Show the popup message
+        showPopupMessage();
+    }
+</script>
+</body>
+</html>
