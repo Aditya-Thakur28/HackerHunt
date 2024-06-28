@@ -159,7 +159,23 @@
         </div>
     </nav>
 </header>
+    <section>
 <iframe src="https://discord.com/widget?id=1057322222877945896&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+    </section>
+<script>
+    function toggleVisibility(id) {
+        const element = document.getElementById(id);
+        if (element.style.display === 'none') {
+            element.style.display = 'block';
+        } else {
+            element.style.display = 'none';
+        }
+    }
+
+    // Responsive Navbar
+    const dropdownButton = document.querySelector('.dropdown-button');
+    const navbar = document.getElementById('navbar');
+
     dropdownButton.addEventListener('click', () => {
         navbar.classList.toggle('show');
     });
@@ -187,7 +203,22 @@
         }
         lastScrollTop = scrollTop;
     });
-</script>
 
+    // Show popup message function
+    function showPopupMessage() {
+        const popup = document.getElementById('popupMessage');
+        popup.style.display = 'block';
+        setTimeout(() => {
+            popup.style.display = 'none';
+        }, 3000);
+    }
+
+    function submitAnswer(attemptId) {
+        // Hide the attempt area
+        toggleVisibility(attemptId);
+        // Show the popup message
+        showPopupMessage();
+    }
+</script>
 </body>
 </html>
